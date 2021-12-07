@@ -38,7 +38,6 @@ def callback(channel, method, _, body):
         print("[ERROR] Moss result not sent")
         if log:
             print(res.text)
-        sys.exit(0)
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
