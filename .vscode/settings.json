@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "/Users/vincent/Library/Caches/pypoetry/virtualenvs/mossservice-YDr-tMWL-py3.8/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "cSpell.words": [
+        "RABBITMQ"
+    ]
+}
