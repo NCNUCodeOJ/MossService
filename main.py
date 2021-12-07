@@ -25,6 +25,8 @@ def callback(channel, method, _, body):
     )
     path = os.getenv("CLASS_URL")+"/" + \
         body["class_id"]+"/problem/"+body["problem_id"]+"/moss"
+    if log:
+        print(path)
     res = requests.post(path, json={
         "url": result
     })
@@ -34,6 +36,9 @@ def callback(channel, method, _, body):
             print(res.text)
     else:
         print("[ERROR] Moss result not sent")
+        if log:
+            print(res.text)
+        sys.exit(0)
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
