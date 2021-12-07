@@ -4,16 +4,16 @@ Style server service main
 import json
 import os
 import sys
+import threading
 
 import pika
 import requests
 
 from service import moss
 
-
-def callback(channel, method, _, body):
+def job(body):
     """
-    Callback function for receiving message
+    job function
     """
     body = json.loads(body)
     log = bool(os.getenv("LOG"))
@@ -41,6 +41,14 @@ def callback(channel, method, _, body):
         print("[ERROR] Moss result not sent")
         if log:
             print(res.text)
+
+def callback(channel, method, _, body):
+    """
+    Callback function for receiving message
+    """
+    tread = threading.Thread(target = job, args = (body,))
+    tread.start()
+
     channel.basic_ack(delivery_tag=method.delivery_tag)
 
 
