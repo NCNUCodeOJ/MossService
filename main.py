@@ -20,6 +20,9 @@ def callback(channel, method, _, body):
     respath = os.getenv("SUBMISSION_URL")+"/code"
     backend_req = requests.post(respath, json=body)
     backend_res = json.loads(backend_req.text)
+    if log:
+        print(body)
+        print(backend_res["submission_list"])
     result = moss.file_check(
         body["problem_id"], body["language"], backend_res["submission_list"]
     )
